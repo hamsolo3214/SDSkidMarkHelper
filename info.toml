@@ -1,0 +1,8 @@
+[meta]
+name        = "SDSkidMarkHelper"
+author      = "HamSolo3214"
+category    = "Training"
+
+[script]
+dependencies = [ "VehicleState" ]
+timeout = 0
