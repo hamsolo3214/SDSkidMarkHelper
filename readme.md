@@ -9,3 +9,5 @@ The plugin should delete any existing if they are left there.
 Put the `SDSkidMarkHelper.op` file in your in your plugins folder, which should be `C:\Users\<USER>\OpenplanetNext\Plugins` ![PluginLocation](./Images/PluginLocation.PNG).
 
 You should now be ready to go.
+
+https://www.youtube.com/watch?v=EqJnW2aKB7c youtube video showing the plugin in use.
