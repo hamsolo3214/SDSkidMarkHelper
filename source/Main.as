@@ -77,10 +77,7 @@ string GetSkidsForSpeedGrassDirt(float speed, float sideSpeed) {
 			return defaultSkids;
 	}
 
-	float lower = 50 - (50 * 0.78) - 5;
-	float upper = lower + 12;
-
-	return GetSkidsForSideSpeed(sideSpeed, upper, lower);
+	return GetSkidsForSideSpeed(sideSpeed, 12, 9);
 }
 
 string GetSkidsForSpeed(float speed, float sideSpeed) {
@@ -88,34 +85,15 @@ string GetSkidsForSpeed(float speed, float sideSpeed) {
 		return defaultSkids;
 	}
 
-	float multiplier = 0.8; 
-	
-	if (speed < 500) {
-		multiplier = 0.5;
-	} else if (speed < 600) {
-		multiplier = 0.6;
-	} else if (speed < 700) {
-		multiplier = 0.67;
-	} else if (speed < 800) {
-		multiplier = 0.72;
-	} else if (speed < 900) {
-		multiplier = 0.75;
-	} else if (speed < 995) {
-		multiplier = 0.78;
-	}
-	
-	float lower = 50 - (50 * multiplier) - 5;
-	float upper = lower + 12;
-
-	return GetSkidsForSideSpeed(sideSpeed, upper, lower);
+	return GetSkidsForSideSpeed(sideSpeed, 22, 19);
 }
 
 string GetSkidsForSideSpeed(float sideSpeed, float upper, float lower) {
-	if (upper > sideSpeed && lower < sideSpeed) {
+	if (upper >= sideSpeed && lower <= sideSpeed) {
 		return goodSkids;
 	}
 
-	if (upper + 7.5 > sideSpeed && lower - 7.5 < sideSpeed) {
+	if (upper + 5 >= sideSpeed && lower - 5 =< sideSpeed) {
 		return warningSkids;
 	}
 
