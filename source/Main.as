@@ -35,6 +35,7 @@ void Main() {
 
 		float sideSpeed = Math::Abs(VehicleState::GetSideSpeed(vis) * 3.6f);
 		float frontSpeed = vis.FrontSpeed * 3.6f;
+
 		string skidColor = defaultSkids;
 
 		if (ground == EPlugSurfaceMaterialId::Green || ground == EPlugSurfaceMaterialId::Dirt) {
