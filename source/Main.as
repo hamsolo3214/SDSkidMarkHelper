@@ -77,7 +77,7 @@ string GetSkidsForSpeedGrassDirt(float speed, float sideSpeed) {
 			return defaultSkids;
 	}
 
-	return GetSkidsForSideSpeed(sideSpeed, 14, 11);
+	return GetSkidsForSideSpeed(sideSpeed, 15, 8);
 }
 
 string GetSkidsForSpeed(float speed, float sideSpeed) {
@@ -85,7 +85,7 @@ string GetSkidsForSpeed(float speed, float sideSpeed) {
 		return defaultSkids;
 	}
 
-	return GetSkidsForSideSpeed(sideSpeed, 22, 19);
+	return GetSkidsForSideSpeed(sideSpeed, 24, 17);
 }
 
 string GetSkidsForSideSpeed(float sideSpeed, float upper, float lower) {
