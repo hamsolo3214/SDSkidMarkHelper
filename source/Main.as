@@ -77,7 +77,7 @@ string GetSkidsForSpeedGrassDirt(float speed, float sideSpeed) {
 			return defaultSkids;
 	}
 
-	return GetSkidsForSideSpeed(sideSpeed, 12, 9);
+	return GetSkidsForSideSpeed(sideSpeed, 14, 11);
 }
 
 string GetSkidsForSpeed(float speed, float sideSpeed) {
@@ -93,7 +93,7 @@ string GetSkidsForSideSpeed(float sideSpeed, float upper, float lower) {
 		return goodSkids;
 	}
 
-	if (upper + 5 >= sideSpeed && lower - 5 =< sideSpeed) {
+	if (upper + 5 >= sideSpeed && lower - 5 <= sideSpeed) {
 		return warningSkids;
 	}
 
