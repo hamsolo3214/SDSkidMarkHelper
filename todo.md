@@ -1,5 +1,8 @@
-Add settings:
- - Custom leeway for guuut sd and warning sd?
- - More gradients? Would need a new way to name folders instead of bad/good/warning
+ - settings
+   - Custom leeway for guuut sd and warning sd?
+   - More gradients? Would need a new way to name folders instead of bad/good/warning
  - auto download skids to modwork folder from github (see skidmark selector plugin)
  - inform user about need to restart
+ - readme
+   - describe how to use custom custom skids
+   - describe how to use the xcf GIMP files/edit the DDS files
