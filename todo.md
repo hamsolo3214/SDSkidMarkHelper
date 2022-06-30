@@ -3,6 +3,10 @@
    - More gradients? Would need a new way to name folders instead of bad/good/warning
  - auto download skids to modwork folder from github (see skidmark selector plugin)
  - inform user about need to restart
+ - rainbow skidmarks weeeee
+ - PERFORMANCE: only move the skidmark for the relevant surface
+ - PERFORMANCE: check if the car is touching the ground
+ - PERFORMANCE: don't need to calculate on surfaces where skidmarks aren't visible, like Ice and Plastic
  - readme
    - describe how to use custom custom skids
    - describe how to use the xcf GIMP files/edit the DDS files
