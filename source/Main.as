@@ -49,13 +49,13 @@ void Main() {
 
 		bool isGrassDirt = currentGround == EPlugSurfaceMaterialId::Green || currentGround == EPlugSurfaceMaterialId::Dirt;
 
-		string skidColor = GetSkidsForSpeed(frontSpeed, sideSpeed, isGrassDirt);
+		string currentSkids = GetSkidsForSpeed(frontSpeed, sideSpeed, isGrassDirt);
 
-		if (skidColor == previousSkids) {
+		if (currentSkids == previousSkids) {
 			continue;
 		}
 
-		previousSkids = skidColor;
+		previousSkids = currentSkids;
 
 		if (IO::FileExists(modWorkFolderPath + dirtTarget)) {
 			int mowed = MoveCurrentSkidsToCustomFolder(goodSkids);
@@ -64,12 +64,11 @@ void Main() {
 			mowed += MoveCurrentSkidsToCustomFolder(warningSkids);
 
 			if (mowed == 0) {
-				//previous skids exists, but all skids are in OG folders
 				DeleteOldCustomSkids();
 			}
 		}
 		
-		MoveCustomSkidsToModWorkFolder(skidColor);
+		MoveCustomSkidsToModWorkFolder(currentSkids);
 	}
 }
 
@@ -109,17 +108,17 @@ void DeleteOldCustomSkids() {
 	IO::Delete(modWorkFolderPath + grassTarget);
 }
 
-void MoveCustomSkidsToModWorkFolder(string skidColor) {
-		IO::Move(skidColor + dirtTarget, modWorkFolderPath + dirtTarget);
-		IO::Move(skidColor + asphaltTarget, modWorkFolderPath + asphaltTarget);
-		IO::Move(skidColor + grassTarget, modWorkFolderPath + grassTarget);
+void MoveCustomSkidsToModWorkFolder(string skidsFolderPath) {
+		IO::Move(skidsFolderPath + dirtTarget, modWorkFolderPath + dirtTarget);
+		IO::Move(skidsFolderPath + asphaltTarget, modWorkFolderPath + asphaltTarget);
+		IO::Move(skidsFolderPath + grassTarget, modWorkFolderPath + grassTarget);
 }
 
-int MoveCurrentSkidsToCustomFolder(string skidColor) {
-	if (IO::FileExists(skidColor + dirtTarget) == false) {
-		IO::Move(modWorkFolderPath + dirtTarget, skidColor + dirtTarget);
-		IO::Move(modWorkFolderPath + asphaltTarget, skidColor + asphaltTarget);
-		IO::Move(modWorkFolderPath + grassTarget, skidColor + grassTarget);
+int MoveCurrentSkidsToCustomFolder(string skidsFolderPath) {
+	if (IO::FileExists(skidsFolderPath + dirtTarget) == false) {
+		IO::Move(modWorkFolderPath + dirtTarget, skidsFolderPath + dirtTarget);
+		IO::Move(modWorkFolderPath + asphaltTarget, skidsFolderPath + asphaltTarget);
+		IO::Move(modWorkFolderPath + grassTarget, skidsFolderPath + grassTarget);
 
 		return 1;
 	}
