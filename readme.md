@@ -10,4 +10,4 @@ Put the `SDSkidMarkHelper.op` file in your in your plugins folder, which should 
 
 You should now be ready to go.
 
-https://www.youtube.com/watch?v=EqJnW2aKB7c youtube video showing the plugin in use.
+https://www.youtube.com/watch?v=G2L2tVoMMP8 youtube video showing the plugin in use.
