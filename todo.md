@@ -11,3 +11,4 @@
    - describe how to use custom custom skids
    - describe how to use the xcf GIMP files/edit the DDS files
  - grass/dirt feedback is based on nothing
+   - grass/dirt feedback is now loosely based on shadowcrancers sd maps
