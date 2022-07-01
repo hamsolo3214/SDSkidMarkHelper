@@ -47,28 +47,37 @@ void Main() {
 			continue;
 		}
 
-		bool isGrassDirt = currentGround == EPlugSurfaceMaterialId::Green || currentGround == EPlugSurfaceMaterialId::Dirt;
+		bool isDrivingOnGrass = currentGround == EPlugSurfaceMaterialId::Green;
+		bool isDrivingOnDirt = currentGround == EPlugSurfaceMaterialId::Dirt;
 
-		string currentSkids = GetSkidsForSpeed(frontSpeed, sideSpeed, isGrassDirt);
+		string currentSkids = GetSkidsForSpeed(frontSpeed, sideSpeed, isDrivingOnDirt || isDrivingOnGrass);
 
 		if (currentSkids == previousSkids) {
 			continue;
 		}
 
-		previousSkids = currentSkids;
+		string target = asphaltTarget;
 
-		if (IO::FileExists(modWorkFolderPath + dirtTarget)) {
-			int mowed = MoveCurrentSkidsToCustomFolder(goodSkids);
-			mowed += MoveCurrentSkidsToCustomFolder(defaultSkids);
-			mowed += MoveCurrentSkidsToCustomFolder(badSkids);
-			mowed += MoveCurrentSkidsToCustomFolder(warningSkids);
+		if (isDrivingOnGrass) {
+			target = grassTarget;
+		} 
+		else if (isDrivingOnDirt) {
+			target = dirtTarget;
+		}
+
+		if (IO::FileExists(modWorkFolderPath + target)) {
+			int mowed = MoveCurrentSkidToCustomFolder(goodSkids, target);
+			mowed += MoveCurrentSkidToCustomFolder(defaultSkids, target);
+			mowed += MoveCurrentSkidToCustomFolder(badSkids, target);
+			mowed += MoveCurrentSkidToCustomFolder(warningSkids, target);
 
 			if (mowed == 0) {
 				DeleteOldCustomSkids();
 			}
 		}
 		
-		MoveCustomSkidsToModWorkFolder(currentSkids);
+		previousSkids = currentSkids;
+		MoveCustomSkidToModWorkFolder(currentSkids, target);
 	}
 }
 
@@ -108,17 +117,13 @@ void DeleteOldCustomSkids() {
 	IO::Delete(modWorkFolderPath + grassTarget);
 }
 
-void MoveCustomSkidsToModWorkFolder(string skidsFolderPath) {
-		IO::Move(skidsFolderPath + dirtTarget, modWorkFolderPath + dirtTarget);
-		IO::Move(skidsFolderPath + asphaltTarget, modWorkFolderPath + asphaltTarget);
-		IO::Move(skidsFolderPath + grassTarget, modWorkFolderPath + grassTarget);
+void MoveCustomSkidToModWorkFolder(string skidsFolderPath, string target) {
+		IO::Move(skidsFolderPath + target, modWorkFolderPath + target);
 }
 
-int MoveCurrentSkidsToCustomFolder(string skidsFolderPath) {
-	if (IO::FileExists(skidsFolderPath + dirtTarget) == false) {
-		IO::Move(modWorkFolderPath + dirtTarget, skidsFolderPath + dirtTarget);
-		IO::Move(modWorkFolderPath + asphaltTarget, skidsFolderPath + asphaltTarget);
-		IO::Move(modWorkFolderPath + grassTarget, skidsFolderPath + grassTarget);
+int MoveCurrentSkidToCustomFolder(string skidsFolderPath, string target) {
+	if (IO::FileExists(skidsFolderPath + target) == false) {
+		IO::Move(modWorkFolderPath + target, skidsFolderPath + target);
 
 		return 1;
 	}

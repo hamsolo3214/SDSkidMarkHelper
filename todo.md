@@ -4,7 +4,8 @@
  - auto download skids to modwork folder from github (see skidmark selector plugin)
  - inform user about need to restart
  - rainbow skidmarks weeeee
- - PERFORMANCE: only move the skidmark for the relevant surface
+ - ~~PERFORMANCE: only move the skidmark for the relevant surface~~
+   - Utilize previousTarget/previousSkids to avoid checking every folder
  - ~~PERFORMANCE: check if the car is touching the ground~~
  - ~~PERFORMANCE: don't need to calculate on surfaces where skidmarks aren't visible, like Ice and Plastic~~
  - readme
