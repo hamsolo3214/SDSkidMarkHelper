@@ -1,3 +1,5 @@
+I stole this idea from sh0rty
+
  - Go to the ModWork folder `C:\Users\<USER>\Documents\Trackmania2020\Skins\Stadium\ModWork`
    - If it doesn't exist, create it.
       - If Trackmania was running it needs a restart.

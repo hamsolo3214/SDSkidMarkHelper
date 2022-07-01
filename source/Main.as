@@ -10,83 +10,81 @@ auto goodSkids = modWorkFolderPath + "\\CustomSkids\\GoodSkids";
 auto defaultSkids = modWorkFolderPath + "\\CustomSkids\\DefaultSkids";
 auto warningSkids = modWorkFolderPath + "\\CustomSkids\\WarningSkids";
 
+array<int> noSkidSurfaces = {
+	EPlugSurfaceMaterialId::Ice,
+	EPlugSurfaceMaterialId::RoadIce,
+	EPlugSurfaceMaterialId::Plastic,
+	EPlugSurfaceMaterialId::Water,
+	EPlugSurfaceMaterialId::Snow
+};
+
 void Main() {
 	if (IO::FolderExists(modWorkFolderPath + "\\CarFxImage") == false) {
 		IO::CreateFolder(modWorkFolderPath + "\\CarFxImage");
 	}
 
 	auto app = GetApp();
-
 	string previousSkids = "";
 
 	while (true) {
+		yield();
+
+		if (!Setting_Enabled) {
+			continue;
+		}
+
 		auto vis = VehicleState::ViewingPlayerState();
 		if (vis is null) {
-			yield();
 			continue;
 		}
 
-		auto ground = vis.FLGroundContactMaterial;
-
-		if (ground == EPlugSurfaceMaterialId::XXX_Null) {
-			yield();
-			continue;
-		}
-
+		auto hasGroundContact = vis.IsGroundContact;
+		auto currentGround = vis.FLGroundContactMaterial;
 		float sideSpeed = Math::Abs(VehicleState::GetSideSpeed(vis) * 3.6f);
 		float frontSpeed = vis.FrontSpeed * 3.6f;
 
-		string skidColor = defaultSkids;
-
-		if (ground == EPlugSurfaceMaterialId::Green || ground == EPlugSurfaceMaterialId::Dirt) {
-			skidColor = GetSkidsForSpeedGrassDirt(frontSpeed, sideSpeed);
-		} else {
-			skidColor = GetSkidsForSpeed(frontSpeed, sideSpeed);
+		if (!hasGroundContact || noSkidSurfaces.Find(currentGround) > -1) {
+			continue;
 		}
 
+		bool isGrassDirt = currentGround == EPlugSurfaceMaterialId::Green || currentGround == EPlugSurfaceMaterialId::Dirt;
+
+		string skidColor = GetSkidsForSpeed(frontSpeed, sideSpeed, isGrassDirt);
+
 		if (skidColor == previousSkids) {
-			yield();
 			continue;
 		}
 
 		previousSkids = skidColor;
 
 		if (IO::FileExists(modWorkFolderPath + dirtTarget)) {
-			int mowed = MoveOldSkids(goodSkids);
-			mowed += MoveOldSkids(defaultSkids);
-			mowed += MoveOldSkids(badSkids);
-			mowed += MoveOldSkids(warningSkids);
+			int mowed = MoveCurrentSkidsToCustomFolder(goodSkids);
+			mowed += MoveCurrentSkidsToCustomFolder(defaultSkids);
+			mowed += MoveCurrentSkidsToCustomFolder(badSkids);
+			mowed += MoveCurrentSkidsToCustomFolder(warningSkids);
 
 			if (mowed == 0) {
 				//previous skids exists, but all skids are in OG folders
-				IO::Delete(modWorkFolderPath + dirtTarget);
-				IO::Delete(modWorkFolderPath + asphaltTarget);
-				IO::Delete(modWorkFolderPath + grassTarget);
+				DeleteOldCustomSkids();
 			}
 		}
 		
-		IO::Move(skidColor + dirtTarget, modWorkFolderPath + dirtTarget);
-		IO::Move(skidColor + asphaltTarget, modWorkFolderPath + asphaltTarget);
-		IO::Move(skidColor + grassTarget, modWorkFolderPath + grassTarget);
-
-		yield();
+		MoveCustomSkidsToModWorkFolder(skidColor);
 	}
 }
 
-string GetSkidsForSpeedGrassDirt(float speed, float sideSpeed) {
-	if (speed < 200 || sideSpeed > 50) {
-			return defaultSkids;
-	}
-
-	return GetSkidsForSideSpeed(sideSpeed, 15, 8);
-}
-
-string GetSkidsForSpeed(float speed, float sideSpeed) {
-	if (speed < 420 || sideSpeed > 50) {
+string GetSkidsForSpeed(float speed, float sideSpeed, bool isDirtGrass) {
+	if (speed < 200 || (speed < 420 && !isDirtGrass) || sideSpeed < 2) {
 		return defaultSkids;
 	}
 
-	return GetSkidsForSideSpeed(sideSpeed, 24, 17);
+	if (isDirtGrass) {
+		return GetSkidsForSideSpeed(sideSpeed, 12, 6);
+	}
+	else
+	{
+		return GetSkidsForSideSpeed(sideSpeed, 24, 18);
+	}
 }
 
 string GetSkidsForSideSpeed(float sideSpeed, float upper, float lower) {
@@ -94,14 +92,30 @@ string GetSkidsForSideSpeed(float sideSpeed, float upper, float lower) {
 		return goodSkids;
 	}
 
-	if (upper + 5 >= sideSpeed && lower - 5 <= sideSpeed) {
+	if (upper + 4 >= sideSpeed && lower - 3 <= sideSpeed) {
 		return warningSkids;
 	}
 
-	return badSkids;
+	if (upper + 8 >= sideSpeed && lower - 6 <= sideSpeed) {
+		return badSkids;
+	}
+
+	return defaultSkids;
 }
 
-int MoveOldSkids(string skidColor) {
+void DeleteOldCustomSkids() {
+	IO::Delete(modWorkFolderPath + dirtTarget);
+	IO::Delete(modWorkFolderPath + asphaltTarget);
+	IO::Delete(modWorkFolderPath + grassTarget);
+}
+
+void MoveCustomSkidsToModWorkFolder(string skidColor) {
+		IO::Move(skidColor + dirtTarget, modWorkFolderPath + dirtTarget);
+		IO::Move(skidColor + asphaltTarget, modWorkFolderPath + asphaltTarget);
+		IO::Move(skidColor + grassTarget, modWorkFolderPath + grassTarget);
+}
+
+int MoveCurrentSkidsToCustomFolder(string skidColor) {
 	if (IO::FileExists(skidColor + dirtTarget) == false) {
 		IO::Move(modWorkFolderPath + dirtTarget, skidColor + dirtTarget);
 		IO::Move(modWorkFolderPath + asphaltTarget, skidColor + asphaltTarget);

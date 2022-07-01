@@ -5,10 +5,9 @@
  - inform user about need to restart
  - rainbow skidmarks weeeee
  - PERFORMANCE: only move the skidmark for the relevant surface
- - PERFORMANCE: check if the car is touching the ground
- - PERFORMANCE: don't need to calculate on surfaces where skidmarks aren't visible, like Ice and Plastic
+ - ~~PERFORMANCE: check if the car is touching the ground~~
+ - ~~PERFORMANCE: don't need to calculate on surfaces where skidmarks aren't visible, like Ice and Plastic~~
  - readme
    - describe how to use custom custom skids
    - describe how to use the xcf GIMP files/edit the DDS files
  - grass/dirt feedback is based on nothing
- - default feedback is wider than sh0rty uses, to make me feel better
