@@ -3,15 +3,19 @@
    - More gradients? Would need a new way to name folders instead of bad/good/warning
    - We can iterate all folders in custom folders, and then pick default based on settings, allowing people to dump custom skids in there
      - would require folderstructure+naming
- - auto download skids to modwork folder from github (see skidmark selector plugin)
- - inform user about need to restart
- - rainbow skidmarks weeeee
- - ~~PERFORMANCE: only move the skidmark for the relevant surface~~
+ - ease-of-use
+   - auto download skids to modwork folder from github (see skidmark selector plugin)
+   - inform user about need to restart
+ - performance
+   - ~~only move the skidmark for the relevant surface~~
    - Utilize previousTarget/previousSkids to avoid checking every folder
- - ~~PERFORMANCE: check if the car is touching the ground~~
- - ~~PERFORMANCE: don't need to calculate on surfaces where skidmarks aren't visible, like Ice and Plastic~~
+   - ~~check if the car is touching the ground~~
+   - ~~don't need to calculate on surfaces where skidmarks aren't visible, like Ice and Plastic~~
  - readme
    - describe how to use custom custom skids
    - describe how to use the xcf GIMP files/edit the DDS files
- - grass/dirt feedback is based on nothing
-   - grass/dirt feedback is now loosely based on shadowcrancers sd maps
+ - tech.
+   - grass/dirt feedback is based on nothing
+     - grass/dirt feedback is now loosely based on shadowcrancers sd maps
+ - fun
+   - rainbow skidmarks weeeee
