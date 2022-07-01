@@ -6,6 +6,7 @@
  - ease-of-use
    - auto download skids to modwork folder from github (see skidmark selector plugin)
    - inform user about need to restart
+   - if existing skidmarks are there, put them in default/new default folder
  - performance
    - ~~only move the skidmark for the relevant surface~~
    - Utilize previousTarget/previousSkids to avoid checking every folder
