@@ -26,8 +26,13 @@ void OnSettingsChanged() {
 }
 
 void Main() {
+	if (IO::FolderExists(modWorkFolderPath) == false) {
+		IO::CreateFolder(modWorkFolderPath);
+		UI::ShowNotification(Icons::Check + " " + Meta::ExecutingPlugin().Name, "ModWork folder created, Game needs a restart.");
+	}
 	if (IO::FolderExists(modWorkFolderPath + "\\CarFxImage") == false) {
 		IO::CreateFolder(modWorkFolderPath + "\\CarFxImage");
+		UI::ShowNotification(Icons::Check + " " + Meta::ExecutingPlugin().Name, "CarFxImage folder created, Game needs a restart.");
 	}
 
 	auto app = GetApp();
