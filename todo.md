@@ -3,6 +3,7 @@
    - More gradients? Would need a new way to name folders instead of bad/good/warning
    - We can iterate all folders in custom folders, and then pick default based on settings, allowing people to dump custom skids in there
      - would require folderstructure+naming
+     - ~~change default skids~~
  - ease-of-use
    - auto download skids to modwork folder from github (see skidmark selector plugin)
    - ~~inform user about need to restart~~
