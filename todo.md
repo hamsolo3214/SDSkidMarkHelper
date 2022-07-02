@@ -16,12 +16,15 @@
    - ~~check if the car is touching the ground~~
    - ~~don't need to calculate on surfaces where skidmarks aren't visible, like Ice and Plastic~~
  - readme
-   - describe how to use custom custom skids
+   - ~~describe how to use custom custom skids~~
+     - could use a better description
    - describe how to use the xcf GIMP files/edit the DDS files
  - tech.
    - dirtsmoke is a file?
    - grass/dirt feedback is based on nothing
      - grass/dirt feedback is now loosely based on shadowcrancers sd maps
+   - i don't know how the leeway should be calculated
+     - also what is a good leeway?
  - fun
    - rainbow skidmarks weeeee
    - wobble skidmarks?
