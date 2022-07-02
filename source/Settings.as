@@ -1,6 +1,9 @@
 [Setting name="Enabled" category="Settings"]
 bool Setting_Enabled = true;
 
+[Setting name="Grass/Dirt Enabled" category="Settings"]
+bool Setting_DG_Enabled = true;
+
 [Setting name="Default Skidmarks" category="Settings"]
 string Setting_DefaultSkidsFolder = "DefaultSkids";
 

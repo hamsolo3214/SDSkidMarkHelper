@@ -96,6 +96,10 @@ void Main() {
 }
 
 string GetSkidsForSpeed(float speed, float sideSpeed, bool isDirtGrass) {
+	if (isDirtGrass && !Setting_DG_Enabled) {
+		return defaultSkids;
+	}
+
 	if (speed < 200 || (speed < 420 && !isDirtGrass) || sideSpeed < 2) {
 		return defaultSkids;
 	}
