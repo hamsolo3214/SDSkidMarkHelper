@@ -96,11 +96,11 @@ string GetSkidsForSpeed(float speed, float sideSpeed, bool isDirtGrass) {
 	}
 
 	if (isDirtGrass) {
-		return GetSkidsForSideSpeed(sideSpeed, 12, 6);
+		return GetSkidsForSideSpeed(sideSpeed, Setting_Upper_DG, Setting_Lower_DG);
 	}
 	else
 	{
-		return GetSkidsForSideSpeed(sideSpeed, 24, 18);
+		return GetSkidsForSideSpeed(sideSpeed, Setting_Upper, Setting_Lower);
 	}
 }
 
@@ -109,11 +109,13 @@ string GetSkidsForSideSpeed(float sideSpeed, float upper, float lower) {
 		return goodSkids;
 	}
 
-	if (upper + 4 >= sideSpeed && lower - 3 <= sideSpeed) {
+	if (upper + Setting_Upper_Leeway >= sideSpeed && 
+		lower - Setting_Lower_Leeway <= sideSpeed) {
 		return warningSkids;
 	}
 
-	if (upper + 8 >= sideSpeed && lower - 6 <= sideSpeed) {
+	if (upper + Setting_Upper_Leeway * 2 >= sideSpeed && 
+		lower - Setting_Lower_Leeway * 2 <= sideSpeed) {
 		return badSkids;
 	}
 
