@@ -1,15 +1,17 @@
  - settings
-   - Custom leeway for guuut sd and warning sd?
+   - ~~Custom leeway for guuut sd and warning sd?~~
    - More gradients? Would need a new way to name folders instead of bad/good/warning
    - We can iterate all folders in custom folders, and then pick default based on settings, allowing people to dump custom skids in there
      - would require folderstructure+naming
  - ease-of-use
    - auto download skids to modwork folder from github (see skidmark selector plugin)
-   - inform user about need to restart
-   - if existing skidmarks are there, put them in default/new default folder
+   - ~~inform user about need to restart~~
+   - if existing skidmarks are there, put them in ./CustomSkids/OldSkids folder
  - performance
    - ~~only move the skidmark for the relevant surface~~
    - Utilize previousTarget/previousSkids to avoid checking every folder
+      - use did_first_time_startup setting variable to verify we have had skids
+      - feels error prone?
    - ~~check if the car is touching the ground~~
    - ~~don't need to calculate on surfaces where skidmarks aren't visible, like Ice and Plastic~~
  - readme
