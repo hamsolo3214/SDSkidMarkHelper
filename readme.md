@@ -5,7 +5,7 @@ I stole this idea from sh0rty
       - If Trackmania was running it needs a restart.
  - Put the `CustomSkids` folder in the `ModWork` folder ![ModWorkFolder](./Images/ModWorkFolder.PNG).
    - You can put your own skidmarks here as well, just have the same 3 files, and place a folder in `CustomSkids`
-     - In-game under Openplanet -> Settings -> SDSkidMarkHelper replace the skidmark you want with your folder ![CustomSkids1](./Images/CustomSkids.PNG) [!CustomSkids2](./Images/CustomSkids2.PNG)
+     - In-game under Openplanet -> Settings -> SDSkidMarkHelper replace the skidmark you want with your folder ![CustomSkids1](./Images/CustomSkids.PNG) ![CustomSkids2](./Images/CustomSkids2.PNG)
 
 The plugin swaps these around depending on your speed and drift, if you have old custom skids, you can put them in `DefaultSkids` or backup/delete them. 
 The plugin should delete any existing if they are left there.
