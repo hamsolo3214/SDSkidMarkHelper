@@ -7,14 +7,11 @@ bool Setting_DG_Enabled = true;
 [Setting name="Default Skidmarks" category="Settings"]
 string Setting_DefaultSkidsFolder = "DefaultSkids";
 
-
 [Setting name="Good Skidmarks" category="Settings"]
 string Setting_GoodSkidsFolder = "GoodSkids";
 
-
 [Setting name="Bad Skidmarks" category="Settings"]
 string Setting_BadSkidsFolder = "BadSkids";
-
 
 [Setting name="Warning Skidmarks" category="Settings"]
 string Setting_WarningSkidsFolder = "WarningSkids";
