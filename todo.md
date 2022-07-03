@@ -26,5 +26,6 @@
    - i don't know how the leeway should be calculated
      - also what is a good leeway?
  - fun
-   - rainbow skidmarks weeeee
+   - ~~rainbow skidmarks weeeee~~
+   - ~~letter skidmarks~~
    - wobble skidmarks?
