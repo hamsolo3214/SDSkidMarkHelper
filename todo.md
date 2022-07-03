@@ -12,6 +12,7 @@
    - ~~only move the skidmark for the relevant surface~~
    - Utilize previousTarget/previousSkids to avoid checking every folder
       - use did_first_time_startup setting variable to verify we have had skids
+        - previousDirtSkids/previousAsphaltSkids/previousGrassSkids instead of just previousSkids
       - feels error prone?
    - ~~check if the car is touching the ground~~
    - ~~don't need to calculate on surfaces where skidmarks aren't visible, like Ice and Plastic~~

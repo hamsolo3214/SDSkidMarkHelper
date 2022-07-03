@@ -49,6 +49,20 @@ void Main() {
 	auto app = GetApp();
 	string previousSkids = "";
 
+	if (IO::FileExists(modWorkFolderPath + asphaltTarget)) {
+			for (int x = 0; x < skidmarks.Length; x++) {
+
+			if (IO::FileExists(skidmarks[x] + asphaltTarget) == false) {
+				previousSkids = skidmarks[x];
+				break;
+			}
+		}
+	}
+
+	if (previousSkids == "") {
+		print("No previous skids moved");
+	}
+
 	while (true) {
 		yield();
 		auto vis = VehicleState::ViewingPlayerState();
@@ -64,6 +78,8 @@ void Main() {
 		if (!hasGroundContact || noSkidSurfaces.Find(currentGround) > -1) {
 			continue;
 		}
+
+		
 
 		for (int i = 0; i < skidmarks.Length; i++) {
 			if (previousSkids != "") {
